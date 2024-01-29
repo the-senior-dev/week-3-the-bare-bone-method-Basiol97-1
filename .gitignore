@@ -1,0 +1,13 @@
+node_modules
+build
+coverage
+
+# Ignore .env files for production
+.env
+
+# MAC OS
+.DS_Store 
+
+# Cypress
+screenshots
+cypress/downloads/downloads.html

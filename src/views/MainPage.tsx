@@ -4,6 +4,7 @@ import SearchBar from "../components/SearchBar";
 import {PageContainer} from "../components/styled";
 import TrendingNow from "../components/TrendingNow";
 import TopRated from "../components/TopRatedMovies";
+import UpcomingMovies from "../components/UpcomingMovies";
 
 export default function MainPage() {
   return (
@@ -11,6 +12,7 @@ export default function MainPage() {
       <SearchBar />
       <MovieList />
       <TrendingNow />
+      <UpcomingMovies />
       <TopRated />
     </PageContainer>
   );

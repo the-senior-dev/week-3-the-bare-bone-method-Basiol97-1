@@ -1,0 +1,9 @@
+#Configuration Files
+webpack.config.js
+jest.config.js
+
+# Test Files
+*.spec.*x
+
+# Type Declarations
+

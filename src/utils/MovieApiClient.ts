@@ -60,6 +60,11 @@ export default class ApiClient {
     return this.fetchFromApi<ApiResponse<Movie>>(url);
   }
 
+  async getMovieListUpcomingMovies(): Promise<ApiResponse<Movie> | ApiError> {
+    const url = `${this.apiUrl}/movie/upcoming?api_key=${this.apiKey}`;
+    return this.fetchFromApi<ApiResponse<Movie>>(url);
+  }
+
   async getMovieSimilar(
     movieId: string
   ): Promise<ApiResponse<Movie> | ApiError> {

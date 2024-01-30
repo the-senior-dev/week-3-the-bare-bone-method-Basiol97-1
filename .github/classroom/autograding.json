@@ -1,0 +1,44 @@
+{
+  "tests": [
+    {
+      "name": "1. Add the UpcomingMovies Component",
+      "setup": "npm install",
+      "run": "npm run cy:task-one",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": null
+    },
+    {
+      "name": "1.2 Implement the Container/Presenter Pattern",
+      "setup": "npm install",
+      "run": "npm run y:task-one-bonus",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": null
+    },
+    {
+      "name": "2.1 Add a Search Component ",
+      "setup": "npm install",
+      "run": "npm run cy:task-two-search",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": null
+    },
+    {
+      "name": "2.2 Add a Pagination Component",
+      "setup": "npm install",
+      "run": "npm run cy:task-two-pagination",
+      "input": "",
+      "output": "",
+      "comparison": "exact",
+      "timeout": 10,
+      "points": null
+    }
+  ]
+}

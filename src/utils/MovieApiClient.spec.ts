@@ -46,7 +46,7 @@ describe("MovieApiClient", () => {
 
     it("fetches movie list successfully", async () => {
       fetch.mockResponseOnce(JSON.stringify(mockMovieList));
-      const response = await client.getMovieList();
+      const response = await client.getMovieList('star');
       expect(response).toEqual(mockMovieList);
       expect(fetch).toHaveBeenCalledWith(
         `${mockApiUrl}/search/movie?query=${encodeURIComponent(

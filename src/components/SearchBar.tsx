@@ -1,15 +1,34 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 import backgroundImage from "../assets/search-header.jpeg";
 import settings from "../settings";
 
-export default function SearchBar() {
+type Props = {
+  handleSearch?: (movieName: string) => void;
+};
+
+export default function SearchBar({ handleSearch }: Props) {
+
+  const movieName = useRef<HTMLInputElement>(null);
+
+  const handleClick = () => {
+    if (handleSearch && movieName.current) {
+      handleSearch(movieName.current.value);
+    }
+  };
+
   return (
     <SearchBarContainer>
       <SearchBarTitle>Welcome.</SearchBarTitle>
       <SearchBarSubTitle>
         Millions of movies, TV shows and people to discover. Explore now.
       </SearchBarSubTitle>
+      <SearchWrapper>
+        <SearchInput placeholder='search ...' ref={movieName} />
+        <SearchButton onClick={handleClick} >
+          Search
+        </SearchButton>
+      </SearchWrapper>
     </SearchBarContainer>
   );
 }
@@ -45,8 +64,7 @@ const SearchBarSubTitle = styled.h3`
   margin-bottom: 40px;
 `;
 
-// NOTE: You can use the components bellow to go quicker
-/** 
+
 const SearchInput = styled.input`
   display: flex;
   border-radius: 0px;
@@ -67,7 +85,7 @@ const SearchButton = styled.button`
   width: 200px;
   background-color: ${settings.colors.info};
   border-color: ${settings.colors.info};
-  color: ${settings.colors.backgroundSecondary}};
+  color: ${settings.colors.backgroundSecondary};
   font-weight: 700;
   font-size: 1.2rem;
   justify-content: center;
@@ -85,4 +103,4 @@ const SearchWrapper = styled.div`
   justify-content: center;
   align-items: flex-end;
 `;
-**/
+

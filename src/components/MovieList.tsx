@@ -1,32 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import movieApiClient from "../utils/apiClient";
 import MovieCard from "./MovieCard";
 import { ErrorMessage } from "./styled";
 import LoadingIndicator from "./styled/LoadingIndicator";
 
-export default function MovieList() {
-  const [movieList, setMovieList] = useState<Movie[]>([]);
-  const [error, setFetchError] = useState<ApiError | null>();
-  const [loading, setLoading] = useState<boolean>(true); // New loading state
+type Props = {
+  loading: boolean,
+  error: ApiError | null | undefined,
+  movieList: Movie[]
+}; 
 
-  async function getMovies() {
-    try {
-      setLoading(true);
-      const response = await movieApiClient.getMovieList();
-      if ("message" in response) {
-        setFetchError(response);
-      } else {
-        setMovieList(response.results);
-      }
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    getMovies();
-  }, []);
+export default function MovieList({ loading, error, movieList }: Props) {
 
   if(loading){
     return (

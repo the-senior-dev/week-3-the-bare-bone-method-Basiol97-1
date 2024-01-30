@@ -43,8 +43,8 @@ export default class ApiClient {
     return this.fetchFromApi<FullMovieResponse>(url);
   }
 
-  async getMovieList(query: string): Promise<ApiResponse<Movie> | ApiError> {
-    const url = `${this.apiUrl}/search/movie?query=${query}%20wars&api_key=${this.apiKey}`;
+  async getMovieList(query = 'store', page = 1): Promise<ApiResponse<Movie> | ApiError> {
+    const url = `${this.apiUrl}/search/movie?query=${query}%20wars&api_key=${this.apiKey}&page=${page}`;
     return this.fetchFromApi<ApiResponse<Movie>>(url);
   }
 

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 import logo from "../assets/logo-white.png";
 import settings from "../settings";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Header() {
   return (
@@ -20,6 +21,7 @@ export default function Header() {
           <HeaderLogo src={logo} alt="theSeniorDev"></HeaderLogo>
         </HeaderLink>
       </HeaderWrapper>
+      <ThemeToggle />
     </HeaderContainer>
   );
 }

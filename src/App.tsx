@@ -1,26 +1,31 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useContext } from "react";
+import styled, { ThemeProvider } from "styled-components";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainPage from "./views/MainPage";
 import MoviePage from "./views/MoviePage";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import ScrollToTop from "./components/ScrollToTop";
-import settings from "./settings";
+import { DarkModeContext } from "./store/context";
 
 export default function App() {
+  const { theme } = useContext(DarkModeContext);
+  console.log('theme', theme);
+
   return (
+    <ThemeProvider theme={theme}>
     <AppContainer>
       <Router>
-        <Header></Header>
+          <Header />
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/movie/:id" element={<MoviePage />}></Route>
         </Routes>
         <ScrollToTop />
       </Router>
-      <Footer></Footer>
-    </AppContainer>
+        <Footer />
+      </AppContainer>
+    </ThemeProvider>
   );
 }
 
@@ -29,6 +34,6 @@ const AppContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: ${settings.colors.background};
+	background-color: ${({ theme }) => theme.background};
   position: relative;
 `;

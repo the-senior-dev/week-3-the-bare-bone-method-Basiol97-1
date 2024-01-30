@@ -91,7 +91,7 @@ const MovieCardContainer = styled(Link)`
   margin-bottom: 10px;
   box-sizing: border-box;
   height: 240px;
-  background-color: ${settings.colors.backgroundSecondary};
+  background-color: ${({ theme }) => theme.background_secondary};
   box-shadow: 0 2px 8px ${settings.colors.shadow};
   border-radius: 4px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;

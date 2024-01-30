@@ -23,7 +23,7 @@ export const PageSection = styled.section`
   box-shadow: 0 2px 4px ${settings.colors.shadow};
   padding: 10px;
   box-sizing: border-box;
-  background-color: ${settings.colors.backgroundSecondary};
+  background-color: ${({ theme }) => theme.background_secondary};
   margin-bottom: 2rem;
   margin-top: 2rem;
   padding: 1rem;

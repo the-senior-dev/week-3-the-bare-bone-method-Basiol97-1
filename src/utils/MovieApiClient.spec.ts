@@ -51,7 +51,7 @@ describe("MovieApiClient", () => {
       expect(fetch).toHaveBeenCalledWith(
         `${mockApiUrl}/search/movie?query=${encodeURIComponent(
           query
-        )}&api_key=${mockApiKey}`,
+        )}&api_key=${mockApiKey}&page=${1}`,
         { headers }
       );
     });

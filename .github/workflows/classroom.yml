@@ -1,19 +1,56 @@
-name: GitHub Classroom Workflow
-
-on:
-  - push
-  - workflow_dispatch
-
+name: Autograding Tests
+'on':
+- workflow_dispatch
+- repository_dispatch
 permissions:
   checks: write
   actions: read
   contents: read
-
 jobs:
-  build:
-    name: Autograding
+  run-autograding-tests:
     runs-on: ubuntu-latest
     if: github.actor != 'github-classroom[bot]'
     steps:
-      - uses: actions/checkout@v4
-      - uses: education/autograding@v1
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: 1. Add the UpcomingMovies Component
+      id: 1-add-the-upcomingmovies-component
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: 1. Add the UpcomingMovies Component
+        setup-command: npm install
+        command: npm run cy:task-one
+        timeout: 10
+    - name: 1.2 Implement the Container/Presenter Pattern
+      id: 1-2-implement-the-container-presenter-pattern
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: 1.2 Implement the Container/Presenter Pattern
+        setup-command: npm install
+        command: npm run y:task-one-bonus
+        timeout: 10
+    - name: '2.1 Add a Search Component '
+      id: 2-1-add-a-search-component
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: '2.1 Add a Search Component '
+        setup-command: npm install
+        command: npm run cy:task-two-search
+        timeout: 10
+    - name: 2.2 Add a Pagination Component
+      id: 2-2-add-a-pagination-component
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: 2.2 Add a Pagination Component
+        setup-command: npm install
+        command: npm run cy:task-two-pagination
+        timeout: 10
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        1-ADD-THE-UPCOMINGMOVIES-COMPONENT_RESULTS: "${{steps.1-add-the-upcomingmovies-component.outputs.result}}"
+        1-2-IMPLEMENT-THE-CONTAINER-PRESENTER-PATTERN_RESULTS: "${{steps.1-2-implement-the-container-presenter-pattern.outputs.result}}"
+        2-1-ADD-A-SEARCH-COMPONENT_RESULTS: "${{steps.2-1-add-a-search-component.outputs.result}}"
+        2-2-ADD-A-PAGINATION-COMPONENT_RESULTS: "${{steps.2-2-add-a-pagination-component.outputs.result}}"
+      with:
+        runners: 1-add-the-upcomingmovies-component,1-2-implement-the-container-presenter-pattern,2-1-add-a-search-component,2-2-add-a-pagination-component
